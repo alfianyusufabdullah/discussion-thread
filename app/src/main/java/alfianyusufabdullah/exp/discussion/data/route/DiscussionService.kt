@@ -10,8 +10,8 @@ interface DiscussionService {
     @FormUrlEncoded
     @POST("discussion/publish")
     suspend fun publishNewDiscussionOrComment(
-        @Field("type") type: String = "-",
-        @Field("title") title: String,
+        @Field("type") type: String,
+        @Field("title") title: String = "-",
         @Field("comment") comment: String,
         @Field("name") name: String
     )
