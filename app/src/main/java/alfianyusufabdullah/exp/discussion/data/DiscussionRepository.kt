@@ -3,66 +3,60 @@ package alfianyusufabdullah.exp.discussion.data
 import alfianyusufabdullah.exp.discussion.data.response.DiscussionResponse
 import alfianyusufabdullah.exp.discussion.data.route.DiscussionService
 import alfianyusufabdullah.exp.discussion.domain.model.Discussion
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import retrofit2.Response
 import java.io.IOException
 
 class DiscussionRepository(private val discussionService: DiscussionService) {
 
     suspend fun publishNewDiscussion(discussion: Discussion): Flow<Resources<DiscussionResponse>> {
-        return flow {
-            val response = discussionService.publishNewDiscussionOrComment(
+        return invokeApiCall {
+            discussionService.publishNewDiscussionOrComment(
                 "discussion",
                 discussion.title,
                 discussion.comment,
                 discussion.name
             )
-
-            if (response.isSuccessful) {
-                emit(Resources.Success(response.body()))
-            } else {
-                emit(Resources.Failure(IOException(response.message())))
-            }
         }
     }
 
     suspend fun publishNewComment(discussion: Discussion): Flow<Resources<DiscussionResponse>> {
-        return flow {
-            val response = discussionService.publishNewDiscussionOrComment(
+        return invokeApiCall {
+            discussionService.publishNewDiscussionOrComment(
                 type = "comment",
                 comment = discussion.comment,
                 name = discussion.name
             )
-
-            if (response.isSuccessful) {
-                emit(Resources.Success(response.body()))
-            } else {
-                emit(Resources.Failure(IOException(response.message())))
-            }
         }
     }
 
     suspend fun findAllDiscussion(): Flow<Resources<DiscussionResponse>> {
-        return flow {
-            val response = discussionService.findAllDiscussionWithParent()
-
-            if (response.isSuccessful) {
-                emit(Resources.Success(response.body()))
-            } else {
-                emit(Resources.Failure(IOException(response.message())))
-            }
+        return invokeApiCall {
+            discussionService.findAllDiscussionWithParent()
         }
     }
 
     suspend fun findAllDiscussionWithParentId(parentId: Int): Flow<Resources<DiscussionResponse>> {
-        return flow {
-            val response = discussionService.findAllDiscussionWithParent(parentId)
-
-            if (response.isSuccessful) {
-                emit(Resources.Success(response.body()))
-            } else {
-                emit(Resources.Failure(IOException(response.message())))
-            }
+        return invokeApiCall {
+            discussionService.findAllDiscussionWithParent(parentId)
         }
+    }
+
+    private fun invokeApiCall(call: suspend () -> Response<DiscussionResponse>): Flow<Resources<DiscussionResponse>> {
+        return flow {
+            try {
+                val response = call.invoke()
+                if (response.isSuccessful) {
+                    emit(Resources.Success(response.body()))
+                } else {
+                    Resources.Failure(IOException("Failure derived data [${response.message()}]"))
+                }
+            } catch (e: Exception) {
+                Resources.Failure(e)
+            }
+        }.flowOn(Dispatchers.IO)
     }
 }
