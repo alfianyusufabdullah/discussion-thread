@@ -83,14 +83,18 @@
         android:id="@+id/itemPrioritiesDiscussion"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:maxLines="2"
-        android:textColor="#BC757474"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/itemIcCommentDiscussion"
-        app:layout_constraintStart_toEndOf="@id/itemIcCommentDiscussion"
-        app:layout_constraintTop_toTopOf="@id/itemIcCommentDiscussion"
-        tools:text="3 Balasan" />
+        android:layout_marginStart="12dp"
+        android:background="@drawable/bg_question"
+        android:paddingStart="10dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="1dp"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@id/itemReplyDiscussion"
+        app:layout_constraintStart_toEndOf="@id/itemReplyDiscussion"
+        app:layout_constraintTop_toTopOf="@id/itemReplyDiscussion"
+        android:text="Need Help" />
 
     <TextView
         android:id="@+id/itemReplyDiscussion"

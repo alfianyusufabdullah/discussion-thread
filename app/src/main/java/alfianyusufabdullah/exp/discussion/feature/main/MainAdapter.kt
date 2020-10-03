@@ -19,6 +19,12 @@ class MainAdapter(private val discussions: MutableList<Discussion>) :
             itemView.itemQuestionDiscussion.text = discussion.comment
             itemView.itemTimeDiscussion.text = discussion.createdAt.toString()
             itemView.itemReplyDiscussion.text = discussion.reply.toString()
+
+            if (discussion.reply ?: 0 > 0) {
+                itemView.itemPrioritiesDiscussion.visibility = View.GONE
+            } else {
+                itemView.itemPrioritiesDiscussion.visibility = View.VISIBLE
+            }
         }
     }
 
