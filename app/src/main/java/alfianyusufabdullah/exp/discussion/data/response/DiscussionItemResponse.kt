@@ -1,7 +1,5 @@
 package alfianyusufabdullah.exp.discussion.data.response
 
-import android.os.Parcelable
-
 data class DiscussionItemResponse(
     val createdAt: Long? = null,
     val name: String? = null,
