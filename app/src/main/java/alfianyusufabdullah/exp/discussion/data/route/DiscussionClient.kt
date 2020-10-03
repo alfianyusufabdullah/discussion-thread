@@ -5,12 +5,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class DiscussionClient {
 
-    val clientService: DiscussionClient
+    val clientService: DiscussionService
         get() {
             return Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("https://02d5db12e67c.ngrok.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(DiscussionClient::class.java)
+                .create(DiscussionService::class.java)
         }
 }
