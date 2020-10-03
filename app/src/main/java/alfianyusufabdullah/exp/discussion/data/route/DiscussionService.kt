@@ -2,10 +2,7 @@ package alfianyusufabdullah.exp.discussion.data.route
 
 import alfianyusufabdullah.exp.discussion.data.response.DiscussionResponse
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface DiscussionService {
 
@@ -20,6 +17,6 @@ interface DiscussionService {
 
     @GET("discussion/")
     suspend fun findAllDiscussionWithParent(
-        @Field("parentId") parentId: Int? = null
+        @Query("parentId") parentId: Int? = null
     ): Response<DiscussionResponse>
 }
