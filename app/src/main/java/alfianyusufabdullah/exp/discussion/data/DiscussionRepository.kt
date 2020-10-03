@@ -16,9 +16,9 @@ class DiscussionRepository(private val discussionService: DiscussionService) {
         return invokeApiCall {
             discussionService.publishNewDiscussionOrComment(
                 "discussion",
-                discussion.title,
-                discussion.comment,
-                discussion.name
+                discussion.title ?: "-",
+                discussion.comment ?: "-",
+                discussion.name ?: "-"
             )
         }
     }
@@ -27,8 +27,8 @@ class DiscussionRepository(private val discussionService: DiscussionService) {
         return invokeApiCall {
             discussionService.publishNewDiscussionOrComment(
                 type = "comment",
-                comment = discussion.comment,
-                name = discussion.name
+                comment = discussion.comment ?: "-",
+                name = discussion.name ?: "-"
             )
         }
     }
@@ -52,10 +52,12 @@ class DiscussionRepository(private val discussionService: DiscussionService) {
                 if (response.isSuccessful) {
                     emit(Resources.Success(response.body()))
                 } else {
-                    Resources.Failure(IOException("Failure derived data [${response.message()}]"))
+                    println(response.message())
+                    emit(Resources.Failure(IOException("Failure derived data [${response.message()}]")))
                 }
             } catch (e: Exception) {
-                Resources.Failure(e)
+                println(e.message)
+                emit(Resources.Failure(e))
             }
         }.flowOn(Dispatchers.IO)
     }
