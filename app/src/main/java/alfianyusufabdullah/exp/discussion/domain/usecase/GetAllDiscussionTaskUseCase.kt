@@ -7,23 +7,23 @@ import alfianyusufabdullah.exp.discussion.domain.model.Discussion
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import java.io.IOException
 
 class GetAllDiscussionTaskUseCase(
     private val repository: DiscussionRepository, private val mapper: Mapper
 ) {
 
-    suspend fun findAllDiscussion(): Flow<List<Discussion>?> {
+    suspend fun findAllDiscussion(): Flow<Resources<List<Discussion>>> {
         return flow {
             when (val result = repository.findAllDiscussion().first()) {
                 is Resources.Success -> {
                     val discussions = result.data?.discussion?.map {
                         mapper.discussionDataToDomain(it)
                     }
-                    emit(discussions)
+                    emit(Resources.Success(discussions))
                 }
                 is Resources.Failure -> {
-                    throw IOException(result.exception)
+                    result.exception.printStackTrace()
+                    emit(Resources.Failure(result.exception))
                 }
             }
         }
