@@ -9,7 +9,7 @@ import java.io.IOException
 
 class DiscussionRepository(private val discussionService: DiscussionService) {
 
-    suspend fun publishNewDiscussion(discussion: Discussion): Flow<DiscussionResponseOutput<DiscussionResponse>> {
+    suspend fun publishNewDiscussion(discussion: Discussion): Flow<Resources<DiscussionResponse>> {
         return flow {
             val response = discussionService.publishNewDiscussionOrComment(
                 "discussion",
@@ -18,24 +18,51 @@ class DiscussionRepository(private val discussionService: DiscussionService) {
                 discussion.name
             )
 
-            if (response.isSuccessful){
-                emit(DiscussionResponseOutput.Success(response.body()))
+            if (response.isSuccessful) {
+                emit(Resources.Success(response.body()))
             } else {
-                emit(DiscussionResponseOutput.Failure(IOException("")))
+                emit(Resources.Failure(IOException(response.message())))
             }
-
         }
     }
 
-    suspend fun publishNewComment(discussion: Discussion): Flow<String> {
+    suspend fun publishNewComment(discussion: Discussion): Flow<Resources<DiscussionResponse>> {
+        return flow {
+            val response = discussionService.publishNewDiscussionOrComment(
+                type = "comment",
+                comment = discussion.comment,
+                name = discussion.name
+            )
 
+            if (response.isSuccessful) {
+                emit(Resources.Success(response.body()))
+            } else {
+                emit(Resources.Failure(IOException(response.message())))
+            }
+        }
     }
 
-    suspend fun findAllDiscussion() {
+    suspend fun findAllDiscussion(): Flow<Resources<DiscussionResponse>> {
+        return flow {
+            val response = discussionService.findAllDiscussionWithParent()
 
+            if (response.isSuccessful) {
+                emit(Resources.Success(response.body()))
+            } else {
+                emit(Resources.Failure(IOException(response.message())))
+            }
+        }
     }
 
-    suspend fun findAllDiscussionWithParentId(parentId: Int) {
+    suspend fun findAllDiscussionWithParentId(parentId: Int): Flow<Resources<DiscussionResponse>> {
+        return flow {
+            val response = discussionService.findAllDiscussionWithParent(parentId)
 
+            if (response.isSuccessful) {
+                emit(Resources.Success(response.body()))
+            } else {
+                emit(Resources.Failure(IOException(response.message())))
+            }
+        }
     }
 }
