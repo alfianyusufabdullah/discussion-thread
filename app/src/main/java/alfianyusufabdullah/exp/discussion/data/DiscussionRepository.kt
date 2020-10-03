@@ -35,7 +35,7 @@ class DiscussionRepository(private val discussionService: DiscussionService) {
 
     suspend fun findAllDiscussion(): Flow<Resources<DiscussionResponse>> {
         return invokeApiCall {
-            discussionService.findAllDiscussionWithParent()
+            discussionService.findAllDiscussionWithParent(0)
         }
     }
 
