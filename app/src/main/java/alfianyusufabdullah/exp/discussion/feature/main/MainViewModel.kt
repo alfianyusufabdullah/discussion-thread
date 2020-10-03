@@ -1,5 +1,6 @@
 package alfianyusufabdullah.exp.discussion.feature.main
 
+import alfianyusufabdullah.exp.discussion.data.Resources
 import alfianyusufabdullah.exp.discussion.domain.model.Discussion
 import alfianyusufabdullah.exp.discussion.domain.usecase.GetAllDiscussionTaskUseCase
 import alfianyusufabdullah.exp.discussion.feature.base.BaseViewModel
@@ -18,8 +19,8 @@ class MainViewModel(
     private val allDiscussionTaskUseCase: GetAllDiscussionTaskUseCase
 ) : BaseViewModel() {
 
-    private val _discussions = MutableLiveData<List<Discussion>>()
-    val discussions: LiveData<List<Discussion>> = _discussions
+    private val _discussions = MutableLiveData<Resources<List<Discussion>>>()
+    val discussions: LiveData<Resources<List<Discussion>>> = _discussions
 
     fun findAllDiscussion() {
         viewModelScope.launch {
