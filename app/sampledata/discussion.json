@@ -1,0 +1,24 @@
+{
+  "discussion": [
+    {
+      "title": "Fragment tidak muncul",
+      "question": "Mohon bantuannya saya sedang mengerjakan submission 2, tapi fragment followers dan following tidak muncul di view pager"
+    },
+    {
+      "title": "pilih instalasi intellij biar sesuai dengan di modul?",
+      "question": "Selamat siang, mau tanya kalo instalasi intellij idea biar sesuai optionya dengan di laptop seperti apa, soalnya pas di latihan tidak sesuai dengan pluginsnya?"
+    },
+    {
+      "title": "Gagal get data detail users dari API",
+      "question": "saya mau ambil data dari url  https://api.github.com/users/{username} ini dan mengirimkannnya saat recyclerview di klik, tapi saat pindah activity data tidak berhasil terambil. saya sudah coba pakai intent tapi data dari url https://api.github.com/users ini yang terkirim ,sedangkan saya ingin menampilkan data dari response endpoint https://api.github.com/users/{username} ini. Saya tunggu saran dan masukannya Terima kasih!"
+    },
+    {
+      "title": "Repeating Alarm Manager tidak aktif ketika aplikasi closed",
+      "question": "Selamat malam, Jadi saya membuat repeating alarm manager yang aktif sehari sekali setiap pukul 9 pagi. Repeating alarm manager bisa aktif ketika aplikasi sedang dibuka. Tetapi ketika aplikasi sedang ditutup, repeating alarm manager menjadi tidak aktif. "
+    },
+    {
+      "title": "penerapan OCP",
+      "question": "izin bertanya, untuk penerapan prinsip OC ini, apakah lebih baik dituliskan pada beberapa file sesuai nama kelasnya atau cukup satu file saja ya?"
+    }
+  ]
+}
