@@ -35,11 +35,11 @@ class DiscussionRepository(private val discussionService: DiscussionService) {
 
     suspend fun findAllDiscussion(): Flow<Resources<DiscussionResponse>> {
         return invokeApiCall {
-            discussionService.findAllDiscussionWithParent(0)
+            discussionService.findAllDiscussionWithParent()
         }
     }
 
-    suspend fun findAllDiscussionWithParentId(parentId: Int): Flow<Resources<DiscussionResponse>> {
+    suspend fun findAllDiscussionWithParentId(parentId: String): Flow<Resources<DiscussionResponse>> {
         return invokeApiCall {
             discussionService.findAllDiscussionWithParent(parentId)
         }
