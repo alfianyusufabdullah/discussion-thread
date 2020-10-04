@@ -7,5 +7,6 @@ data class DiscussionItemResponse(
     val id: String? = null,
     val title: String? = null,
     val reply: Int? = null,
+    val isChild: Boolean = false,
     val parentId: String? = null
 )
