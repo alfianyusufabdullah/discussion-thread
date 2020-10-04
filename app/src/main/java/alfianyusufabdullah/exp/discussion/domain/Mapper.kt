@@ -13,6 +13,7 @@ class Mapper {
             comment = discussionItemResponse.comment,
             name = discussionItemResponse.name,
             reply = discussionItemResponse.reply,
+            isChild = discussionItemResponse.isChild,
             createdAt = discussionItemResponse.createdAt
         )
 }
