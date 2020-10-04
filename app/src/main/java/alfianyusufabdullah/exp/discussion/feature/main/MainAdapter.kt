@@ -19,9 +19,12 @@ class MainAdapter(
         fun bind(discussion: Discussion): View {
             itemView.itemTitleDiscussion.text = discussion.title
             itemView.itemUserDiscussion.text = discussion.name
-            itemView.itemQuestionDiscussion.text = discussion.comment
-            itemView.itemTimeDiscussion.text = discussion.createdAt.toString()
+            itemView.itemQuestionDiscussion.text = discussion.comment?.replace("\n", " ")
             itemView.itemReplyDiscussion.text = discussion.reply.toString()
+
+            val time = "Diposting ${discussion.createdAt}"
+
+            itemView.itemTimeDiscussion.text = time
 
             if (discussion.reply ?: 0 > 0) {
                 itemView.itemPrioritiesDiscussion.visibility = View.GONE
