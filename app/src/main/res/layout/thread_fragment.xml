@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Light"
-        android:elevation="1dp"/>
+        android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -31,9 +30,8 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="24dp"
-                android:maxLines="2"
                 android:textColor="#4A4A4A"
-                android:textSize="20sp"
+                android:textSize="23sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -41,12 +39,11 @@
 
             <ImageView
                 android:id="@+id/itemIcUsername"
-                android:layout_width="15dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="24dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="13dp"
                 android:src="@drawable/ic_user"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/itemTitleDiscussion"
                 app:layout_constraintTop_toBottomOf="@id/itemTitleDiscussion" />
 
             <TextView
@@ -58,56 +55,52 @@
                 android:textColor="#BC333333"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/itemIcUsername"
+                app:layout_constraintBottom_toTopOf="@+id/itemTimeDiscussion"
                 app:layout_constraintStart_toEndOf="@id/itemIcUsername"
-                app:layout_constraintTop_toTopOf="@id/itemIcUsername"
+                app:layout_constraintTop_toTopOf="@+id/itemIcUsername"
                 tools:text="@tools:sample/full_names" />
 
             <TextView
                 android:id="@+id/itemTimeDiscussion"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="2dp"
                 android:maxLines="2"
-                android:textColor="#BC333333"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@id/itemUserDiscussion"
-                app:layout_constraintStart_toEndOf="@id/itemUserDiscussion"
-                app:layout_constraintTop_toTopOf="@id/itemUserDiscussion"
+                android:textColor="#57333333"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/itemIcUsername"
+                app:layout_constraintStart_toStartOf="@+id/itemUserDiscussion"
+                app:layout_constraintTop_toBottomOf="@+id/itemUserDiscussion"
                 tools:text="20:20" />
 
             <TextView
                 android:id="@+id/itemQuestionDiscussion"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="24dp"
-                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="3"
                 android:textColor="#BC333333"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/itemTimeDiscussion"
+                app:layout_constraintStart_toStartOf="@id/itemTitleDiscussion"
+                app:layout_constraintTop_toBottomOf="@+id/itemIcUsername"
                 tools:text="@sample/discussion.json/discussion/question" />
 
-            <Button
-                android:id="@+id/itemPublishCommentDiscussions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="tulis jawaban"
-                app:layout_constraintStart_toStartOf="@id/itemQuestionDiscussion"
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="26dp"
+                android:background="#34000000"
                 app:layout_constraintTop_toBottomOf="@id/itemQuestionDiscussion" />
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/threads"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:clipToPadding="false"
-                android:padding="8dp"
-                app:layout_constraintTop_toBottomOf="@id/itemPublishCommentDiscussions"
+                app:layout_constraintTop_toBottomOf="@+id/view"
                 tools:itemCount="3"
                 tools:listitem="@layout/thread_item" />
         </androidx.constraintlayout.widget.ConstraintLayout>

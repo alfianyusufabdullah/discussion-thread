@@ -5,19 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
     <ImageView
-        android:id="@+id/itemIcUsername"
+        android:id="@+id/itemIcUsernameChild"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="50dp"
         android:src="@drawable/ic_user"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/timeline"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:background="#32454545"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/itemIcUsernameChild"
+        app:layout_constraintStart_toStartOf="@id/itemIcUsernameChild"
+        app:layout_constraintTop_toBottomOf="@id/itemIcUsernameChild" />
+
     <TextView
-        android:id="@+id/itemUserThread"
+        android:id="@+id/itemUserChild"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -25,33 +33,35 @@
         android:textColor="#BC333333"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/itemIcUsername"
-        app:layout_constraintTop_toTopOf="@id/itemIcUsername"
+        app:layout_constraintBottom_toBottomOf="@id/itemIcUsernameChild"
+        app:layout_constraintStart_toEndOf="@id/itemIcUsernameChild"
+        app:layout_constraintTop_toTopOf="@id/itemIcUsernameChild"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="@tools:sample/full_names" />
 
     <TextView
-        android:id="@+id/itemTimeThread"
+        android:id="@+id/itemTimeChild"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:maxLines="2"
         android:textColor="#57333333"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="@+id/itemIcUsername"
-        app:layout_constraintStart_toStartOf="@+id/itemUserThread"
-        app:layout_constraintTop_toBottomOf="@+id/itemUserThread"
+        app:layout_constraintStart_toStartOf="@+id/itemUserChild"
+        app:layout_constraintTop_toBottomOf="@+id/itemUserChild"
         tools:text="20:20" />
 
     <TextView
-        android:id="@+id/itemQuestionThread"
+        android:id="@+id/itemQuestionChild"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:textColor="#BC333333"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/itemIcUsername"
-        app:layout_constraintTop_toBottomOf="@+id/itemIcUsername"
+        app:layout_constraintStart_toStartOf="@id/itemUserChild"
+        app:layout_constraintTop_toBottomOf="@+id/itemTimeChild"
         tools:text="@sample/discussion.json/discussion/question" />
 
     <View
@@ -59,7 +69,6 @@
         android:layout_height="0.7dp"
         android:layout_marginTop="20dp"
         android:background="#3B000000"
-        app:layout_constraintTop_toBottomOf="@id/itemQuestionThread" />
-
+        app:layout_constraintTop_toBottomOf="@id/itemQuestionChild" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
