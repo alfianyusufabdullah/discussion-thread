@@ -17,6 +17,6 @@ interface DiscussionService {
 
     @GET("discussion/")
     suspend fun findAllDiscussionWithParent(
-        @Query("parentId") parentId: Int? = null
+        @Query("parentId") parentId: String? = null
     ): Response<DiscussionResponse>
 }
