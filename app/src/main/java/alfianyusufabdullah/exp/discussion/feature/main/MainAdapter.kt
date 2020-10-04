@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_discussion.view.*
 
-class MainAdapter(private val discussions: MutableList<Discussion>) :
+class MainAdapter(
+    private val discussions: MutableList<Discussion>,
+    private val click: (Discussion) -> Unit
+) :
     RecyclerView.Adapter<MainAdapter.MainHolder>() {
 
     class MainHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(discussion: Discussion) {
+        fun bind(discussion: Discussion): View {
             itemView.itemTitleDiscussion.text = discussion.title
             itemView.itemUserDiscussion.text = discussion.name
             itemView.itemQuestionDiscussion.text = discussion.comment
@@ -25,6 +28,8 @@ class MainAdapter(private val discussions: MutableList<Discussion>) :
             } else {
                 itemView.itemPrioritiesDiscussion.visibility = View.VISIBLE
             }
+
+            return itemView
         }
     }
 
@@ -33,7 +38,7 @@ class MainAdapter(private val discussions: MutableList<Discussion>) :
             .run(::MainHolder)
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) =
-        holder.bind(discussions[position])
+        holder.bind(discussions[position]).setOnClickListener { click(discussions[position]) }
 
 
     override fun getItemCount() = discussions.size
