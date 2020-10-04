@@ -9,8 +9,11 @@
         android:id="@+id/discussions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
         android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="30dp"
         tools:itemCount="3"
         tools:listitem="@layout/item_discussion" />
 </androidx.constraintlayout.widget.ConstraintLayout>
