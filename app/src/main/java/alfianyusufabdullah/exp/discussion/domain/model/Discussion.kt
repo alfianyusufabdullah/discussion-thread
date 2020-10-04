@@ -12,5 +12,6 @@ data class Discussion(
     val id: String? = "-",
     val title: String? = "-",
     val reply: Int? = 0,
+    val isChild: Boolean = false,
     val parentId: String? = "-"
 ) : Parcelable
